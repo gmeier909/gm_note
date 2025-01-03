@@ -1,19 +1,37 @@
-# README
+# GM-Note
 
-## About
+一个基于 Wails + Vue3 开发的命令管理工具。
 
-This is the official Wails Vue template.
+## 前置要求
 
-You can configure the project by editing `wails.json`. More information about the project settings can be found
-here: https://wails.io/docs/reference/project-config
+1. 安装 Go 1.21 或更高版本
+2. 安装 Node.js 和 npm
+3. 安装 Wails CLI
 
-## Live Development
+```bash
+go install github.com/wailsapp/wails/v2/cmd/wails@latest
+```
+## 安装依赖
 
-To run in live development mode, run `wails dev` in the project directory. This will run a Vite development
-server that will provide very fast hot reload of your frontend changes. If you want to develop in a browser
-and have access to your Go methods, there is also a dev server that runs on http://localhost:34115. Connect
-to this in your browser, and you can call your Go code from devtools.
+1. 安装 Go 依赖
 
-## Building
+```bash
+go mod download
+go mod tidy
+```
 
-To build a redistributable, production mode package, use `wails build`.
+2. 安装前端依赖
+
+```bash
+cd frontend
+npm install
+```
+## 编译
+
+```bash
+wails build -trimpath -ldflags "-s -w" -upx
+```
+
+编译后的可执行文件将在 `build/bin` 目录下。
+
+首次运行时会自动生成 `config.yaml` 配置文件。
